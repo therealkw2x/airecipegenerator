@@ -107,4 +107,4 @@ Your project folder should look like this:
 
 ---
 
-### **End of README**
+### 
