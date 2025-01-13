@@ -12,12 +12,12 @@ genai.configure(api_key=os.getenv('API_KEY'))
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # System message to guide the model to respond in pirate speak
-system_message = "You are a pirate chatbot. Respond only in pirate speak, using pirate slang and nautical terms. Do not reply in normal English."
+system_message = "You are a Recipe generator. Respond with detailed recipes for any cuisine or dietary preferance provided. Include ingredients, measurements, and step by step instructions. Avoid uneseccary commentary."
 
 # Function to generate responses in pirate speak
 def generate_pirate_response(user_message):
     # Combine the system message with the user's input to guide the model's response
-    prompt = f"{system_message} User: {user_message} Pirate Response:"
+    prompt = f"{system_message} User: {user_message} Recipe:"
 
     # Generate the response using the model
     response = model.generate_content(prompt)
@@ -26,16 +26,15 @@ def generate_pirate_response(user_message):
 
 # Example of interacting with the chatbot
 if __name__ == "__main__":
+    print("Welcome to the Recipe Generator!")
     while True:
-        # Get user input
-        message = input("Enter your message (or type 'exit' to quit): ")
-        
-        if message.lower() == 'exit':
-            print("Exiting the chat...")
+        user_input = input("\nEnter your request (e.g., 'vegan lasagna recipe') or type 'exit' to quit: ")
+        if user_input.lower() == 'exit':
+            print("Thanks for using the Recipe Generator. Goodbye!")
             break
-        
-        # Get the pirate response
-        pirate_response = generate_pirate_response(message)
-        
-        # Print the pirate response
-        print("Pirate Response:", pirate_response)
+        try:
+            recipe = generate_recipe(user_input)
+            print("\nHere is your recipe:\n")
+            print(recipe)
+        except Exception as e:
+            print("An error occurred:", str(e))
