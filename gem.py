@@ -18,7 +18,7 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 # System message to guide the model to generate recipes
 system_message = """
 You are a Recipe generator. Respond with detailed recipes for any cuisine or dietary preference provided.
-Include ingredients, measurements, and step-by-step instructions. Avoid unnecessary commentary.
+Include ingredients, measurements, and step-by-step instructions. Avoid unnecessary commentary. especially if it dosn't pertain with recipes do not respond to anything that has nothign to do with recipes and be fun with it no need to be a boring person like really dumb it down for people
 """
 
 def generate_recipe(user_message):
@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
         recipe = generate_recipe(user_input)
         if recipe:
-            print("\nHere is your recipe:\n")
+            print("\nHere is your recipe!!!:\n")
             print(recipe)
